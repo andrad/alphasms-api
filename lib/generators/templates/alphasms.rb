@@ -1,7 +1,6 @@
 Alphasms.configure do |config|
-  config.api_key = ''
-  config.api_login = ''
-  config.api_password = ''
-  config.api_sender = ''
-  config.api_type = 0
+  config.api_key = 'SOME KEY'
+  config.sender  = 'UNKNOWN'
+  config.format  = :xml
+  config.type    = 0
 end
