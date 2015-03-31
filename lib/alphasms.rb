@@ -1,6 +1,6 @@
 require 'alphasms/version'
 require 'alphasms/builder'
-# require 'alphasms/configuration'
+require 'alphasms/configuration'
 require 'nokogiri'
 require 'open-uri'
 require 'net/http'
@@ -11,19 +11,19 @@ module Alphasms
 
   SmsStatus = Struct.new('SmsStatus', :id, :sms_id, :sms_count, :completed_at, :status)
   Sms       = Struct.new('Sms', :id, :recipient, :message, :sender, :type, :url, :date_beg, :date_end)
-  Config    = Struct.new('Config', :api_key, :api_login, :api_password, :sender, :format, :type) do
-    def initialize
-      self.api_key = 'Key'
-      self.sender = 'Sender'
-      self.format = :xml
-      self.type = 0
-    end
-  end
+  # Config    = Struct.new('Config', :api_key, :api_login, :api_password, :sender, :format, :type) do
+  #   def initialize
+  #     self.api_key = 'Key'
+  #     self.sender = 'Sender'
+  #     self.format = :xml
+  #     self.type = 0
+  #   end
+  # end
 
   class << self
-    def config
-      Config.new
-    end
+    # def config
+    #   Config.new
+    # end
 
     def balance options = {}
       builder = prepare options

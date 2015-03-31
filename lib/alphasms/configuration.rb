@@ -28,10 +28,10 @@ module Alphasms
       def extended(mod)
         puts "#{self} extended in #{mod}"
       end
+    end
 
-      def included(mod)
-        puts "#{self} included in #{mod}"
-      end
+    def included(mod)
+      puts "#{self} included in #{mod}"
     end
   end
 end
