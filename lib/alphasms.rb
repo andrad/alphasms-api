@@ -7,6 +7,8 @@ require 'net/http'
 require 'pry'
 
 module Alphasms
+  extend Alphasms::Configuration
+
   class OptionError < StandardError; end
 
   SmsStatus = Struct.new('SmsStatus', :id, :sms_id, :sms_count, :completed_at, :status)
