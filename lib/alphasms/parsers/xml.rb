@@ -3,7 +3,6 @@ module Alphasms
     class ResponseError < StandardError; end
 
     class Xml
-
       def parse_balance xml
         doc = Nokogiri::XML(xml)
 
