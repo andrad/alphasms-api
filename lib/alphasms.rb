@@ -13,8 +13,8 @@ module Alphasms
   Sms       = Struct.new('Sms', :id, :recipient, :message, :sender, :type, :url, :date_beg, :date_end)
   Config    = Struct.new('Config', :api_key, :api_login, :api_password, :sender, :format, :type) do
     def initialize
-      self.api_key = '3bcd7848b218777a344f8e2d5e0e5e5bf7f9b780'
-      self.sender = 'Deshevshe'
+      self.api_key = 'Key'
+      self.sender = 'Sender'
       self.format = :xml
       self.type = 0
     end

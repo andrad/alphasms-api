@@ -7,8 +7,8 @@ module Alphasms
     module ClassMethods
       DefaultConfig = Struct.new(:api_key, :api_login, :api_password, :sender, :type) do
         def initialize
-          self.api_key = '3bcd7848b218777a344f8e2d5e0e5e5bf7f9b780'
-          self.sender = 'Deshevshe'
+          self.api_key = 'Key'
+          self.sender = 'Sender'
           self.format = :xml
           self.type = 0
         end
