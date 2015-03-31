@@ -1,10 +1,6 @@
 require 'alphasms/version'
 require 'alphasms/builder'
 require 'alphasms/configuration'
-require 'nokogiri'
-require 'open-uri'
-require 'net/http'
-require 'pry'
 
 module Alphasms
   class OptionError < StandardError; end
@@ -39,10 +35,14 @@ module Alphasms
       end
 
       response = builder.request.deliver collection
-      builder.parser.parse_deliver response
+      result = builder.parser.parse_deliver response
+      block_given? ? yield(result) : result
     end
 
     def prepare_deliver_params data
+
+      raise ::ArgumentError, 'Invalid argument' unless data.is_a? Hash
+
       sms = Sms.new
       sms.id        = data[:id]
       sms.recipient = data[:recipient]

@@ -16,7 +16,7 @@ module Alphasms
   end
 
   describe 'Alphasms.balance' do
-    it 'returns amount and currency' do
+    it 'should respond to amount and currency' do
       expect(Alphasms.balance { |s| "amount: #{s.amount}, currency: #{s.currency}" }).to match /amount: ([\d\.]+), currency: ([A-Z]{3})/
     end
   end
@@ -34,12 +34,12 @@ module Alphasms
       expect(statuses.first.class).to eq Struct::SmsStatus
     end
 
-    it 'should have id' do
+    it 'item should respond to id' do
       expect(statuses.first.id).to eq 1
     end
 
-    it 'should have code of error' do
-      expect(statuses.first.status).to be >= 200
+    it 'item should respond to status' do
+      expect(statuses.first.status).to be >= 1
     end
   end
 end

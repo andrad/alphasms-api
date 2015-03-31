@@ -1,3 +1,7 @@
+require 'nokogiri'
+require 'open-uri'
+require 'net/http'
+
 module Alphasms
   module Requests
     class Xml
