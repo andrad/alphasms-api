@@ -1,5 +1,6 @@
 require 'alphasms/version'
 require 'alphasms/builder'
+require 'alphasms/config'
 # require 'alphasms/configuration'
 require 'nokogiri'
 require 'open-uri'
