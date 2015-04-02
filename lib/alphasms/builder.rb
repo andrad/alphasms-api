@@ -6,6 +6,7 @@ module Alphasms
     class << self
       def build options
         @klass = options.delete(:format).to_s.capitalize
+
         build_request options
         build_parser
 

@@ -19,8 +19,7 @@ module Alphasms
     def status sms_ids, options = {}
       builder = prepare options
       response = builder.request.status sms_ids
-      result = builder.parser.parse_status response
-      block_given? ? yield(result) : result
+      builder.parser.parse_status response
     end
 
     def deliver data, options = {}
@@ -35,8 +34,7 @@ module Alphasms
       end
 
       response = builder.request.deliver collection
-      result = builder.parser.parse_deliver response
-      block_given? ? yield(result) : result
+      builder.parser.parse_deliver response
     end
 
     def prepare_deliver_params data
@@ -52,6 +50,7 @@ module Alphasms
       sms.url       = data[:url] if sms.type.eql? 2
       sms.date_beg  = data[:date_beg]
       sms.date_end  = data[:date_end]
+
       sms
     end
 

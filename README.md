@@ -1,39 +1,90 @@
 # Alphasms
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/alphasms`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+The plugin provides the access to the API functions of the Ukrainian service of SMS-sending Alphasms.ua
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'alphasms'
+gem 'alphasms', git: 'https://github.com/andrad/alphasms-api'
 ```
 
 And then execute:
 
     $ bundle
 
-Or install it yourself as:
+## General configuration
 
-    $ gem install alphasms
+There's a generator that generates the default configuration file into config/initializers directory.
+Run the following generator command, then edit the generated file.
+
+```ruby
+rails g alphasms:initializer
+```
+
+Options:
+
+- `api_key` - your api key
+- `sender` - custom sender
+- `type` - type of sms (default is :xml, 0 - usual message, 1 - flash message, 2 - wap-push message)
 
 ## Usage
 
-TODO: Write usage instructions here
+To check the balance, use .balance method
 
-## Development
+```ruby
+Alphasms.balance
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
+if you want to use another api_key
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release` to create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```ruby
+Alphasms.balance({ api_key: 'some key' })
+```
 
-## Contributing
+you cat also pass a block
 
-1. Fork it ( https://github.com/[my-github-username]/alphasms/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+```ruby
+Alphasms.balance({api_key: 'some key'}) { |b| "#{b.amount} #{b.currency}"} # => "123.98 UAH"
+```
+
+To send the sms, use .deliver method
+
+```ruby
+Alphasms.deliver({ recipient: '380000000000', message: 'The message' })
+```
+
+you can also send several sms
+
+```ruby
+Alphasms.deliver([{ recipient: '380000000000', message: 'The message' }, { recipient: '380000000001', message: 'Some text' }])
+```
+
+and you can use custom options
+
+```ruby
+Alphasms.deliver({ recipient: '380000000000', message: 'The message' }, { api_key: 'some key', sender: 'sender', type: 0 })
+```
+
+To check status of sms, use .status method
+
+```ruby
+Alphasms.status('id_sms')
+```
+
+or
+
+```ruby
+Alphasms.status(['id_sms', 'id_sms'])
+```
+
+## VERSION
+
+0.0.2 - Gem started
+
+## LICENSE
+
+is licensed under the MIT license.
+
+Copyright (C) 2015 by andrad (Andrey Radzun)
